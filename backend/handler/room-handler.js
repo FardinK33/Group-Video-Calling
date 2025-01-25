@@ -21,6 +21,11 @@ const roomHandler = (socket) => {
       socket.join(roomID);
       console.log("Room Joined");
     }
+
+    // Notifying Other users of the room by sending user's peerID to initiate a call
+    socket.on("ready", () => {
+      socket.to(roomID).emit("user-joined", { peerID });
+    });
   });
 
   socket.on("disconnect", () => {
