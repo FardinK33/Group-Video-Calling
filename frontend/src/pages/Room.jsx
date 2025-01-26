@@ -4,25 +4,27 @@ import { useParams } from "react-router-dom";
 import UserFeedPlayer from "../components/user-feed-player";
 
 const Room = () => {
-  const { socket, user, stream, userMediaStream, peers } = useSocketContext();
+  const { socket, user, stream, peers } = useSocketContext();
   const { id } = useParams();
 
   useEffect(() => {
-    userMediaStream();
-    if (socket && user) {
+    if (user) {
       socket.emit("joined-room", { roomID: id, peerID: user._id });
     }
   }, [id, socket, user]);
 
   return (
-    <div className="bg-slate-900 text-gray-300 h-screen flex justify-center items-center">
+    <div className="bg-slate-900 text-gray-300 h-screen">
+      room : {id}
       <p>Our Own Feed</p>
       <UserFeedPlayer stream={stream} />
       <br />
       <div>
-        <p>Other Users Feed</p>
+        Other Users Feed
         {Object.keys(peers).map((peerID) => (
-          <UserFeedPlayer key={peerID} stream={peers[peerID].stream} />
+          <>
+            <UserFeedPlayer key={peerID} stream={peers[peerID].stream} />
+          </>
         ))}
       </div>
     </div>

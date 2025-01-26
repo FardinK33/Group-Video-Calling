@@ -11,7 +11,7 @@ const roomHandler = (socket) => {
 
     console.log(`Room created with ID: ${roomID}`);
 
-    socket.emit("room-created", roomID);
+    socket.emit("room-created", { roomID });
   });
 
   socket.on("joined-room", ({ roomID, peerID }) => {
@@ -26,6 +26,8 @@ const roomHandler = (socket) => {
     socket.on("ready", () => {
       socket.to(roomID).emit("user-joined", { peerID });
     });
+
+    console.log(rooms);
   });
 
   socket.on("disconnect", () => {

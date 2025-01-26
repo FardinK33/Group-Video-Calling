@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 const UserFeedPlayer = ({ stream }) => {
-  const videoRef = useRef();
+  const videoRef = useRef(null);
 
   useEffect(() => {
     if (videoRef.current && stream) {
