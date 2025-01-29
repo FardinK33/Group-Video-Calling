@@ -47,6 +47,11 @@ const roomHandler = (socket) => {
 
     console.log("Socket Disconnected");
   });
+
+  socket.on("send-msg", ({ newMsg }) => {
+    const roomID = socket.roomID;
+    socket.to(roomID).emit("new-msg", newMsg);
+  });
 };
 
 export default roomHandler;

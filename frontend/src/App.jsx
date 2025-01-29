@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./pages/Home";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Room from "./pages/room";
+import Room from "./pages/Room";
 
 const App = () => {
   return (

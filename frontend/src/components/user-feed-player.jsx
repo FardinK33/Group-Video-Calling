@@ -12,7 +12,7 @@ const UserFeedPlayer = ({ stream }) => {
   return (
     <video
       ref={videoRef}
-      style={{ height: "300px", width: "300px" }}
+      className="h-full object-cover rounded-xl"
       muted={true}
       autoPlay
     />
