@@ -22,9 +22,7 @@ const Room = () => {
       <div>
         Other Users Feed
         {Object.keys(peers).map((peerID) => (
-          <>
-            <UserFeedPlayer key={peerID} stream={peers[peerID].stream} />
-          </>
+          <UserFeedPlayer key={peerID} stream={peers[peerID].stream} />
         ))}
       </div>
     </div>

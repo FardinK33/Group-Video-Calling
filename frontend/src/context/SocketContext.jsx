@@ -10,7 +10,7 @@ import { v4 as UUIDv4 } from "uuid";
 import { Peer } from "peerjs";
 import SocketIoClient from "socket.io-client";
 import { peerReducer } from "../Reducers/peerReducer";
-import { addPeerAction } from "../Actions/peerAction";
+import { addPeerAction, removePeerAction } from "../Actions/peerAction";
 
 const SocketContext = createContext(null);
 
@@ -81,6 +81,11 @@ const SocketProvider = ({ children }) => {
     });
 
     socket.emit("ready");
+
+    socket.on("user-disconnected", ({ peerID }) => {
+      dispatch(removePeerAction(peerID));
+      console.log("User Disconnected :", peerID);
+    });
   }, [user, stream]);
 
   return (

@@ -9,6 +9,7 @@ export const peerReducer = (state, action) => {
       };
     case REMOVE_PEER:
       const { [action.payload.peerID]: removedPeer, ...remainingPeers } = state;
+      console.log(remainingPeers);
       return remainingPeers;
     default:
       return { ...state };
